@@ -1,0 +1,182 @@
+<app-alert [alertType]="'Success'" [message]="'props to client'"></app-alert>
+<div class="row">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header bg-success">
+        Client List - {{ currentDate | date : "dd-MMM-yy" }}
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Company Name</th>
+                  <th>Person Name</th>
+                  <th>Contact No</th>
+                  <th>City</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (client of clientList; track client.clientId) {
+                <tr>
+                  <td>{{ client.clientId }}</td>
+                  <td>{{ client.companyName | uppercase }}</td>
+                  <td>{{ client.contactPersonName }}</td>
+                  <td>{{ client.contactNo }}</td>
+                  <td>{{ client.city }}</td>
+                  <td>
+                    <button
+                      class="btn btn-primary"
+                      (click)="onEditClient(client)"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      class="btn btn-danger"
+                      (click)="onDeleteClient(client.clientId)"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header bg-success">New Client</div>
+      <div class="card-body">
+        <form #form="ngForm">
+          <div class="row">
+            <div class="col-6">
+              <label for="">Contact Person</label>
+              <input
+                type="text"
+                name="contactPersonName"
+                [(ngModel)]="clientObject.contactPersonName"
+                #personName="ngModel"
+                required
+                minlength="3"
+                class="form-control"
+              />
+              @if(personName.touched) {
+              <div class="text-danger">
+                @if(personName.errors?.['required']) {
+                <span>This is required field</span>
+                } @if(personName.errors?.['minlength']) {
+                <span>Name must be at least 3 characters</span>
+                }
+              </div>
+              }
+            </div>
+            <div class="col-6">
+              <label for="">Company Name</label>
+              <input
+                type="text"
+                name="companyName"
+                [(ngModel)]="clientObject.companyName"
+                class="form-control"
+              />
+            </div>
+            <div class="col-6">
+              <label for="">Contact No</label>
+              <input
+                type="text"
+                name="contactNo"
+                [(ngModel)]="clientObject.contactNo"
+                class="form-control"
+              />
+            </div>
+            <div class="col-6">
+              <label for="">City</label>
+              <input
+                type="text"
+                name="city"
+                [(ngModel)]="clientObject.city"
+                class="form-control"
+              />
+            </div>
+            <div class="col-6">
+              <label for="">State</label>
+              <input
+                type="text"
+                name="state"
+                [(ngModel)]="clientObject.state"
+                class="form-control"
+              />
+            </div>
+            <div class="col-6">
+              <label for="">Pincode</label>
+              <input
+                type="text"
+                name="pincode"
+                [(ngModel)]="clientObject.pincode"
+                class="form-control"
+              />
+            </div>
+            <div class="col-6">
+              <label for="">Adress</label>
+              <textarea
+                name="address"
+                [(ngModel)]="clientObject.address"
+                class="form-control"
+              ></textarea>
+            </div>
+            <div class="col-6">
+              <label for="">Employee Strength</label>
+              <input
+                type="text"
+                name="employeeStrength"
+                [(ngModel)]="clientObject.employeeStrength"
+                class="form-control"
+              />
+            </div>
+            <div class="col-6">
+              <label for="">GST No</label>
+              <input
+                type="text"
+                name="gstNo"
+                [(ngModel)]="clientObject.gstNo"
+                class="form-control"
+              />
+            </div>
+            <div class="col-6">
+              <label for="">Reg No</label>
+              <input
+                type="text"
+                name="regNo"
+                [(ngModel)]="clientObject.regNo"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6">
+              <button class="btn btn-secondary" (click)="onResetClientForm()">
+                Reset
+              </button>
+            </div>
+            <div class="col-6">
+              <app-button
+                [btnClass]="'btn btn-success'"
+                [btnText]="clientObject.clientId != 0 ? 'Edit' : 'Save'"
+                (onBtnClicked)="onSaveClient()"
+              ></app-button>
+              <!-- <button class="btn btn-success" [disabled]="!form.valid" (click)="onSaveClient()">
+                {{ clientObject.clientId != 0 ? "Edit" : "Save" }}
+              </button> -->
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

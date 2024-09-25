@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Role ID</th>
+          <th>Role Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let role of roleList">
+          <td>{{ role.roleId }}</td>
+          <td>{{ role.role }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!--
+INTERPOLATION
+<div class="row d-flex justify-content-center">
+  <div class="col-3">
+    <p>{{ firstName }}</p>
+  </div>
+  <div class="col-3">
+    <p>{{ angularVersion }}</p>
+  </div>
+  <div class="col-3">
+    <p>{{ currentDate }}</p>
+  </div>
+  <div class="col-3">
+    <p>{{ selectedState }}</p>
+  </div>
+
+  PROPERTY-BINDING 
+  <div class="row">
+    <div class="col-3">
+      <input type="text" class="form-control" [value]="firstName" />
+    </div>
+    <div class="col-3">
+      <input [type]="inputType" />
+    </div>
+    <div class="col-3">
+      2-WAY DATA BINDING 
+      <input type="text" class="form-control" [(ngModel)]="firstName" />
+    </div>
+    <div class="col-3">
+      <select [(ngModel)]="selectedState">
+        <option value="MH">MH</option>
+        <option value="MP">MP</option>
+        <option value="Goa">Goa</option>
+      </select>
+    </div>
+  </div>
+
+  EVENT-BINDING 
+  <div class="row">
+    <div class="col-3">
+      <button class="btn btn-success" (click)="showWelcomeAlert()">
+        Show Alert
+      </button>
+    </div>
+    <div class="col-3">
+      <button class="btn btn-success" (click)="showMessage('Welcome React')">
+        Show Reac Msg
+      </button>
+    </div>
+    <div class="col-3">
+      <button class="btn btn-success" (click)="showMessage('Welcome Dot Net')">
+        Show Dot Net Msg
+      </button>
+    </div>
+  </div>
+</div>
+-->
